@@ -1,0 +1,22 @@
+{
+  "experiment_version": "expiry-risk-v1",
+  "dataset_source": "synthetic_prototype",
+  "dataset_file": "ai\\data\\foodsave_features_v1.csv",
+  "target_definition": "expired before successful pickup, approximated by donation_status=expired in the current export",
+  "feature_columns": [
+    "category",
+    "quantity_value",
+    "days_until_expiration",
+    "creation_hour",
+    "creation_day_of_week",
+    "pickup_requested",
+    "volunteer_assigned"
+  ],
+  "evaluation_method": "75/25 chronological split when operational timestamps are available; deterministic prototype fallback otherwise.",
+  "random_state": 42,
+  "limitations": [
+    "Prototype metrics are not real-world impact evidence.",
+    "Synthetic fallback is used when operational history is insufficient.",
+    "Risk thresholds are decision-support bands and are not food-safety rules."
+  ]
+}

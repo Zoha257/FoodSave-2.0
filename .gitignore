@@ -1,0 +1,13 @@
+# FoodSave local / secret configuration
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / local runtime files
+*.log

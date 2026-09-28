@@ -1,0 +1,683 @@
+{
+  "info": {
+    "name": "FoodSave API Collection",
+    "description": "Complete API collection for testing FoodSave food donation management system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/foodsave_project",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/login.php",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "login.php"]
+            }
+          }
+        },
+        {
+          "name": "Donor Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "restaurant1",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/donor/login.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "login.php"]
+            }
+          }
+        },
+        {
+          "name": "NGO Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "foodbank1",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ngo/login.php",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "login.php"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Operations",
+      "item": [
+        {
+          "name": "Admin Dashboard",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/dashboard.php",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "dashboard.php"]
+            }
+          }
+        },
+        {
+          "name": "Manage Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/manage_users.php",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "manage_users.php"]
+            }
+          }
+        },
+        {
+          "name": "View User Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/view_user.php?id=2",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "view_user.php"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Manage Donations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/manage_donations.php",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "manage_donations.php"]
+            }
+          }
+        },
+        {
+          "name": "View Donation Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/view_donation.php?id=1",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "view_donation.php"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Activate User",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/manage_users.php?action=activate&id=2",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "manage_users.php"],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "activate"
+                },
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Donor Operations",
+      "item": [
+        {
+          "name": "Donor Dashboard",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/dashboard.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "dashboard.php"]
+            }
+          }
+        },
+        {
+          "name": "Add Donation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "title",
+                  "value": "Fresh Vegetables",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Mixed fresh vegetables from restaurant",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "vegetables",
+                  "type": "text"
+                },
+                {
+                  "key": "quantity",
+                  "value": "10 kg",
+                  "type": "text"
+                },
+                {
+                  "key": "expiration_date",
+                  "value": "2025-08-30",
+                  "type": "text"
+                },
+                {
+                  "key": "pickup_address",
+                  "value": "123 Main Street",
+                  "type": "text"
+                },
+                {
+                  "key": "pickup_city",
+                  "value": "Springfield",
+                  "type": "text"
+                },
+                {
+                  "key": "pickup_state",
+                  "value": "IL",
+                  "type": "text"
+                },
+                {
+                  "key": "pickup_zip",
+                  "value": "62701",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/donor/add_donation.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "add_donation.php"]
+            }
+          }
+        },
+        {
+          "name": "My Donations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/my_donations.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "my_donations.php"]
+            }
+          }
+        },
+        {
+          "name": "Edit Donation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "title",
+                  "value": "Updated Fresh Vegetables",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "vegetables",
+                  "type": "text"
+                },
+                {
+                  "key": "quantity",
+                  "value": "15 kg",
+                  "type": "text"
+                },
+                {
+                  "key": "expiration_date",
+                  "value": "2025-08-31",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/donor/edit_donation.php?id=1",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "edit_donation.php"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "View Donation",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/view_donation.php?id=1",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "view_donation.php"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Pickup Requests",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/pickup_requests.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "pickup_requests.php"]
+            }
+          }
+        },
+        {
+          "name": "Approve Request",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/pickup_requests.php?action=approve&id=1",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "pickup_requests.php"],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "approve"
+                },
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reject Request",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/donor/pickup_requests.php?action=reject&id=1",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "pickup_requests.php"],
+              "query": [
+                {
+                  "key": "action",
+                  "value": "reject"
+                },
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "NGO Operations",
+      "item": [
+        {
+          "name": "NGO Dashboard",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/ngo/dashboard.php",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "dashboard.php"]
+            }
+          }
+        },
+        {
+          "name": "Browse Donations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/ngo/browse_donations.php",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "browse_donations.php"]
+            }
+          }
+        },
+        {
+          "name": "Browse Donations with Filters",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/ngo/browse_donations.php?category=vegetables&location=Springfield&expiry=week",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "browse_donations.php"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "vegetables"
+                },
+                {
+                  "key": "location",
+                  "value": "Springfield"
+                },
+                {
+                  "key": "expiry",
+                  "value": "week"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Request Pickup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "pickup_date",
+                  "value": "2025-08-28",
+                  "type": "text"
+                },
+                {
+                  "key": "pickup_time",
+                  "value": "14:00",
+                  "type": "text"
+                },
+                {
+                  "key": "request_message",
+                  "value": "We would like to pick up this donation for our food bank.",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ngo/request_pickup.php?id=1",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "request_pickup.php"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "My Requests",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/ngo/my_requests.php",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "my_requests.php"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Registration",
+      "item": [
+        {
+          "name": "Register Donor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "newdonor",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "newdonor@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password123",
+                  "type": "text"
+                },
+                {
+                  "key": "confirm_password",
+                  "value": "password123",
+                  "type": "text"
+                },
+                {
+                  "key": "full_name",
+                  "value": "New Donor Restaurant",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "555-0123",
+                  "type": "text"
+                },
+                {
+                  "key": "address",
+                  "value": "456 New Street",
+                  "type": "text"
+                },
+                {
+                  "key": "city",
+                  "value": "Springfield",
+                  "type": "text"
+                },
+                {
+                  "key": "state",
+                  "value": "IL",
+                  "type": "text"
+                },
+                {
+                  "key": "zip_code",
+                  "value": "62705",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/donor/register.php",
+              "host": ["{{base_url}}"],
+              "path": ["donor", "register.php"]
+            }
+          }
+        },
+        {
+          "name": "Register NGO",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "newngo",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "newngo@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password123",
+                  "type": "text"
+                },
+                {
+                  "key": "confirm_password",
+                  "value": "password123",
+                  "type": "text"
+                },
+                {
+                  "key": "full_name",
+                  "value": "New NGO Organization",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "555-0124",
+                  "type": "text"
+                },
+                {
+                  "key": "address",
+                  "value": "789 NGO Street",
+                  "type": "text"
+                },
+                {
+                  "key": "city",
+                  "value": "Springfield",
+                  "type": "text"
+                },
+                {
+                  "key": "state",
+                  "value": "IL",
+                  "type": "text"
+                },
+                {
+                  "key": "zip_code",
+                  "value": "62706",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/ngo/register.php",
+              "host": ["{{base_url}}"],
+              "path": ["ngo", "register.php"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+

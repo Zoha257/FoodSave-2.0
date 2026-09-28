@@ -1,0 +1,4 @@
+Model,Accuracy,Precision,Recall,F1,ROC_AUC
+Rule-Based Baseline,0.91,0.815,0.846,0.83,
+Logistic Regression,0.86,0.676,0.885,0.767,0.911
+Random Forest,0.89,0.8,0.769,0.784,0.935

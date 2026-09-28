@@ -1,0 +1,83 @@
+{
+  "dataset_source": "synthetic_prototype",
+  "dataset_size": 500,
+  "feature_columns": [
+    "category",
+    "quantity_value",
+    "days_until_expiration",
+    "creation_hour",
+    "creation_day_of_week",
+    "pickup_requested",
+    "volunteer_assigned"
+  ],
+  "target": "expired before successful pickup, approximated by donation_status=expired in the current export",
+  "random_state": 42,
+  "train_size": 375,
+  "test_size": 125,
+  "target_distribution": {
+    "not_expired": 379,
+    "expired": 121
+  },
+  "evaluation_method": "75/25 chronological split when operational timestamps are available; deterministic prototype fallback otherwise.",
+  "selected_model": "Logistic Regression",
+  "models": {
+    "Rule-Based Baseline": {
+      "accuracy": 0.808,
+      "precision": 0.6154,
+      "recall": 0.5333,
+      "f1": 0.5714,
+      "roc_auc": 0.714,
+      "confusion_matrix": [
+        [
+          85,
+          10
+        ],
+        [
+          14,
+          16
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "accuracy": 0.736,
+      "precision": 0.4681,
+      "recall": 0.7333,
+      "f1": 0.5714,
+      "roc_auc": 0.8084,
+      "high_risk_recall": 0.7333,
+      "confusion_matrix": [
+        [
+          70,
+          25
+        ],
+        [
+          8,
+          22
+        ]
+      ]
+    },
+    "Random Forest": {
+      "accuracy": 0.712,
+      "precision": 0.4,
+      "recall": 0.4,
+      "f1": 0.4,
+      "roc_auc": 0.7453,
+      "high_risk_recall": 0.4,
+      "confusion_matrix": [
+        [
+          77,
+          18
+        ],
+        [
+          18,
+          12
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "Prototype metrics are not real-world impact evidence.",
+    "Synthetic fallback is used when operational history is insufficient.",
+    "Risk thresholds are decision-support bands and are not food-safety rules."
+  ]
+}

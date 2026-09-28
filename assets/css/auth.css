@@ -1,0 +1,568 @@
+/* =========================================================
+   FoodSave — Auth & Registration pages
+   Cinematic theme, matched to the landing page. Split layout
+   on desktop: dark glass brand panel left, warm cream card
+   right. Works with every auth markup variant in the app:
+   .auth-container, .auth-card, .login-container,
+   and .foodsave-registration > .container > ... > .card
+   Requires no tokens from style.css — fully self-contained.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+body.auth-page,
+body.foodsave-registration,
+body.foodsave-auth {
+    --au-bg-0: #151816;
+    --au-bg-1: #242824;
+    --au-cream: #f3ecd9;
+    --au-cream-dim: rgba(243, 236, 217, .72);
+    --au-cream-faint: rgba(243, 236, 217, .5);
+    --au-rescue: #9fc9a0;
+    --au-rescue-strong: #c3dfb9;
+    --au-sun: #d9a35f;
+    --au-coral: #d88872;
+    --au-blue: #8faebb;
+    --au-line: rgba(243, 236, 217, .14);
+    --au-serif: "Fraunces", "Playfair Display", Georgia, serif;
+    --au-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+    --au-shadow-lg: 0 30px 70px -20px rgba(0, 0, 0, .5);
+
+    min-height: 100vh;
+    margin: 0;
+    background: var(--au-bg-0) !important;
+    background-image:
+        radial-gradient(55% 45% at 88% 8%, rgba(216, 136, 114, .14), transparent 65%),
+        radial-gradient(45% 40% at 100% 100%, rgba(143, 174, 187, .10), transparent 70%) !important;
+    color: var(--au-cream);
+    font-family: var(--au-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Brand panel (desktop) ---------- */
+
+@media (min-width: 992px) {
+    body.auth-page,
+    body.foodsave-registration {
+        padding-left: min(42vw, 620px);
+    }
+
+    body.auth-page::before,
+    body.foodsave-registration::before {
+        content: "";
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(42vw, 620px);
+        background:
+            linear-gradient(180deg, rgba(16, 19, 17, .18) 0%, rgba(16, 19, 17, .52) 52%, rgba(16, 19, 17, .88) 100%),
+            radial-gradient(85% 60% at 85% 10%, rgba(216, 136, 114, .24), transparent 55%),
+            radial-gradient(70% 55% at 10% 95%, rgba(143, 174, 187, .18), transparent 60%),
+            url('../images/food-aid-auth.jpg') center center / cover no-repeat,
+            linear-gradient(160deg, #303631 0%, #222622 55%, #151816 100%);
+        z-index: 0;
+        filter: saturate(1.05) contrast(1.04);
+    }
+
+    /* Headline */
+    body.auth-page::after,
+    body.foodsave-registration::after {
+        content: "\"If you can't feed a hundred\A people, then feed just one.\"";
+        white-space: pre-line;
+        position: fixed;
+        left: 0;
+        bottom: 9.75rem;
+        width: min(42vw, 620px);
+        padding: 0 3.25rem;
+        color: var(--au-cream);
+        font-family: var(--au-serif);
+        font-size: clamp(1.55rem, 2vw, 2rem);
+        font-weight: 500;
+        letter-spacing: -.015em;
+        line-height: 1.16;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Wordmark (top-left) */
+    body.auth-page .auth-wrapper::after,
+    body.foodsave-registration > .container::after {
+        content: "\f06c";
+        position: fixed;
+        top: 2.18rem;
+        left: 3.25rem;
+        z-index: 4;
+        display: grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 9px;
+        color: var(--au-bg-0);
+        background: linear-gradient(135deg, var(--au-rescue-strong), var(--au-rescue));
+        box-shadow: 0 8px 20px -8px rgba(159, 201, 160, .48);
+        font-family: "Font Awesome 6 Free";
+        font-size: .9rem;
+        font-weight: 900;
+        pointer-events: none;
+    }
+
+    html:has(body.auth-page)::before,
+    html:has(body.foodsave-registration)::before {
+        content: "FoodSave";
+        position: fixed;
+        top: 2.5rem;
+        left: 5.7rem;
+        z-index: 3;
+        display: inline-block;
+        color: transparent;
+        background: linear-gradient(90deg, #fff 0 49%, #c3dfb9 51% 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: "Fraunces", "Playfair Display", Georgia, serif;
+        font-weight: 600;
+        font-size: 1.3rem;
+        letter-spacing: -.01em;
+        pointer-events: none;
+    }
+
+    /* Supporting line */
+    html:has(body.auth-page)::after,
+    html:has(body.foodsave-registration)::after {
+        content: "MOTHER TERESA\A Connecting donors, NGOs, volunteers and drivers so good food reaches people — not landfill.";
+        white-space: pre-line;
+        position: fixed;
+        left: 0;
+        bottom: 3rem;
+        width: min(42vw, 620px);
+        padding: 0 3.25rem;
+        max-width: min(42vw, 620px);
+        color: rgba(243, 236, 217, .68);
+        font-family: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: .95rem;
+        line-height: 1.6;
+        z-index: 3;
+        pointer-events: none;
+    }
+}
+
+/* ---------- Layout wrappers ---------- */
+
+body.auth-page .auth-wrapper,
+body.auth-page > .container,
+body.foodsave-registration > .container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem 1rem;
+    max-width: 100%;
+}
+body.auth-page .auth-wrapper > .container { padding: 0; }
+body.foodsave-registration > .container { justify-content: flex-start; padding-top: 3rem; }
+
+body.auth-page .auth-wrapper > .container > .row,
+body.auth-page > .container > .row,
+body.foodsave-registration > .container > .row { margin: 0; }
+body.auth-page .auth-wrapper > .container > .row > [class*="col-"],
+body.auth-page > .container > .row > [class*="col-"] { padding: 0; }
+
+/* Standalone forgot/reset pages: container is a direct child of body */
+body.auth-page > .auth-container {
+    position: relative;
+    z-index: 2;
+    margin: 12vh auto 2rem;
+}
+
+/* ---------- The card (frosted glass) ---------- */
+
+body.auth-page .auth-container,
+body.auth-page .auth-card,
+body.auth-page .login-container,
+body.auth-page .glass-container {
+    width: 100%;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(25, 42, 31, .88) !important;
+    border: 1px solid var(--au-line) !important;
+    border-radius: 22px !important;
+    box-shadow: var(--au-shadow-lg) !important;
+    padding: 2.25rem 2rem !important;
+    color: var(--au-cream);
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+}
+
+/* login.php uses a Bootstrap card: flatten its inner padding */
+body.auth-page .auth-card { padding: 0 !important; margin-top: 0 !important; }
+body.auth-page .auth-card .card-header {
+    background: transparent !important;
+    border: 0;
+    padding: 2.25rem 2rem 0 !important;
+    text-align: left !important;
+}
+body.auth-page .auth-card .card-body { padding: 1.25rem 2rem 2.25rem !important; }
+
+/* Brand mark above the heading */
+body.auth-page .auth-container > h2:first-child::before,
+body.auth-page .auth-card .card-header h4::before,
+body.foodsave-registration .card-header h4::before {
+    content: "\f06c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1.25rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: var(--au-bg-0);
+    background: linear-gradient(135deg, var(--au-rescue-strong), var(--au-rescue));
+    box-shadow: 0 12px 26px -8px rgba(159, 201, 160, .45);
+}
+
+body.auth-page h1,
+body.auth-page h2,
+body.auth-page h3,
+body.auth-page .auth-card h4 {
+    font-family: var(--au-serif) !important;
+    color: var(--au-cream) !important;
+    font-size: 1.6rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -.015em;
+    text-align: left !important;
+    margin: 0 0 .35rem !important;
+    text-shadow: none !important;
+}
+body.auth-page .auth-container > h2 i,
+body.auth-page .auth-card h4 i { display: none; } /* role icon replaced by brand mark */
+
+body.auth-page .auth-container > h2 + *,
+body.auth-page .auth-container > h2 + form { margin-top: 1.5rem; }
+
+/* Subheading line under the title, derived from the page */
+body.auth-page .auth-container:has(.remember-row) > h2::after {
+    content: "Welcome back — sign in to continue.";
+    display: block;
+    margin-top: .4rem;
+    font-family: var(--au-sans);
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--au-cream-faint);
+}
+
+/* ---------- Form controls ---------- */
+
+body.auth-page form .mb-4 { margin-bottom: 1rem !important; }
+body.auth-page form .mb-3 { margin-bottom: 1rem !important; }
+
+body.auth-page .form-label,
+body.foodsave-registration .form-label {
+    color: var(--au-cream-dim) !important;
+    font-family: var(--au-sans);
+    font-size: .82rem;
+    font-weight: 600;
+}
+
+body.auth-page .form-control,
+body.auth-page .form-select,
+body.foodsave-registration .form-control,
+body.foodsave-registration .form-select {
+    min-height: 48px;
+    border-radius: 12px;
+    font-family: var(--au-sans);
+    font-size: .95rem;
+    background: rgba(11, 14, 13, .52) !important;
+    color: var(--au-cream) !important;
+    border: 1px solid rgba(243, 236, 217, .18) !important;
+}
+body.auth-page .form-control::placeholder,
+body.foodsave-registration .form-control::placeholder { color: rgba(243, 236, 217, .38); }
+body.auth-page .form-control:focus,
+body.auth-page .form-select:focus,
+body.foodsave-registration .form-control:focus,
+body.foodsave-registration .form-select:focus {
+    background: rgba(11, 14, 13, .72) !important;
+    border-color: var(--au-coral) !important;
+    box-shadow: 0 0 0 4px rgba(216, 136, 114, .18) !important;
+    color: var(--au-cream) !important;
+}
+body.auth-page .form-control:-webkit-autofill,
+body.foodsave-registration .form-control:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px rgba(21, 24, 22, .96) inset !important;
+    -webkit-text-fill-color: var(--au-cream) !important;
+}
+body.auth-page .form-select option,
+body.foodsave-registration .form-select option { background: var(--au-bg-1); color: var(--au-cream); }
+
+body.auth-page .remember-row {
+    font-family: var(--au-sans);
+    font-size: .85rem;
+    color: var(--au-cream-dim);
+    margin: .25rem 0 1.25rem !important;
+}
+body.auth-page .remember-row label { color: var(--au-cream-dim) !important; cursor: pointer; }
+body.auth-page .remember-row input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--au-coral);
+}
+body.auth-page .forgot-link { color: #e9aa93 !important; font-weight: 600; }
+body.auth-page .forgot-link:hover { color: var(--au-cream) !important; }
+
+body.auth-page button[type="submit"],
+body.auth-page .btn-primary {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 999px;
+    font-family: var(--au-sans);
+    font-weight: 600;
+    font-size: .95rem;
+    background: var(--au-cream) !important;
+    border-color: var(--au-cream) !important;
+    color: var(--au-bg-0) !important;
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1), background .35s ease, box-shadow .35s ease;
+}
+body.auth-page button[type="submit"]:hover,
+body.auth-page .btn-primary:hover {
+    background: var(--au-rescue-strong) !important;
+    border-color: var(--au-rescue-strong) !important;
+    color: var(--au-bg-0) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -14px rgba(159, 201, 160, .4);
+}
+
+body.auth-page form { margin-bottom: 0 !important; }
+
+/* ---------- Footer links in the card ---------- */
+
+body.auth-page .auth-container > .text-center,
+body.auth-page .auth-card .text-center {
+    margin-top: 1.5rem !important;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--au-line);
+    font-family: var(--au-sans);
+    font-size: .875rem;
+    color: var(--au-cream-faint);
+}
+body.auth-page .auth-container > .text-center p { margin-bottom: .35rem; color: var(--au-cream-faint) !important; }
+body.auth-page .auth-container > .text-center i,
+body.auth-page .auth-card .text-center i { display: none; }
+body.auth-page .auth-container > .text-center a,
+body.auth-page .auth-card .text-center a {
+    color: var(--au-rescue-strong) !important;
+    font-weight: 600;
+}
+body.auth-page .auth-container > .text-center a.d-block,
+body.auth-page .auth-card .text-center > a:only-child {
+    display: inline-flex !important;
+    align-items: center;
+    gap: .35rem;
+    color: var(--au-cream-faint) !important;
+    font-weight: 500;
+    margin-top: .25rem !important;
+}
+body.auth-page .auth-container > .text-center a.d-block::before,
+body.auth-page .auth-card .text-center > a:only-child::before {
+    content: "\f060";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: .75rem;
+}
+
+body.auth-page .alert,
+body.foodsave-registration .alert {
+    border-radius: 12px;
+    font-family: var(--au-sans);
+    font-size: .875rem;
+    margin: 0 0 1.25rem;
+}
+body.auth-page .alert-danger,
+body.foodsave-registration .alert-danger {
+    background: rgba(217, 100, 90, .14) !important;
+    border: 1px solid rgba(217, 100, 90, .35) !important;
+    color: #f3cfc9 !important;
+}
+body.auth-page .alert-success,
+body.foodsave-registration .alert-success {
+    background: rgba(143, 174, 187, .14) !important;
+    border: 1px solid rgba(143, 174, 187, .34) !important;
+    color: #c4dce4 !important;
+}
+body.auth-page .alert-info,
+body.foodsave-registration .alert-info {
+    background: rgba(122, 168, 220, .14) !important;
+    border: 1px solid rgba(122, 168, 220, .3) !important;
+    color: #c7dbf2 !important;
+}
+body.auth-page .alert-info strong,
+body.foodsave-registration .alert-info strong { color: #e3edfa !important; }
+body.auth-page .alert-warning,
+body.foodsave-registration .alert-warning {
+    background: rgba(217, 163, 95, .16) !important;
+    border: 1px solid rgba(217, 163, 95, .35) !important;
+    color: #f0d9b8 !important;
+}
+body.auth-page .alert-warning strong,
+body.foodsave-registration .alert-warning strong { color: var(--au-cream) !important; }
+
+/* =========================================================
+   Registration pages
+   ========================================================= */
+
+body.foodsave-registration {
+    color: #fff;
+}
+
+body.foodsave-registration > .container > .row > [class*="col-"] {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    flex: 0 0 auto;
+}
+
+body.foodsave-registration .card {
+    margin: 0 0 2rem !important;
+    border: 1px solid var(--au-line) !important;
+    border-radius: 22px !important;
+    box-shadow: var(--au-shadow-lg) !important;
+    background: rgba(25, 42, 31, .88) !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+    overflow: hidden;
+}
+
+body.foodsave-registration .card-header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--au-line);
+    padding: 2rem 2rem 1.5rem !important;
+    color: var(--au-cream) !important;
+}
+body.foodsave-registration .card-header h4 {
+    display: block;
+    font-family: var(--au-serif);
+    color: #fff !important;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: -.015em;
+    margin: 0 0 .3rem !important;
+}
+body.foodsave-registration .card-header small {
+    display: block;
+    font-family: var(--au-sans);
+    color: #fff !important;
+    font-size: .9rem !important;
+}
+
+body.foodsave-registration .card-body { padding: 1.75rem 2rem 2rem !important; }
+
+body.foodsave-registration .input-group-text {
+    min-width: 44px;
+    justify-content: center;
+    background: rgba(11, 14, 13, .52);
+    border-color: rgba(243, 236, 217, .18);
+    color: var(--au-cream-dim);
+}
+body.foodsave-registration .btn-primary,
+body.foodsave-registration button[type="submit"] {
+    min-height: 48px;
+    border-radius: 999px;
+    font-family: var(--au-sans);
+    font-weight: 600;
+    font-size: .95rem;
+    background: var(--au-cream) !important;
+    border-color: var(--au-cream) !important;
+    color: var(--au-bg-0) !important;
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1), background .35s ease;
+}
+body.foodsave-registration .btn-primary:hover,
+body.foodsave-registration button[type="submit"]:hover {
+    background: var(--au-rescue-strong) !important;
+    border-color: var(--au-rescue-strong) !important;
+    transform: translateY(-2px);
+}
+body.foodsave-registration .text-muted,
+body.foodsave-registration .text-dark,
+body.foodsave-registration .card-body,
+body.foodsave-registration label { color: #fff !important; }
+body.foodsave-registration a:not(.btn) { color: #fff !important; font-weight: 600; }
+body.foodsave-registration .input-group-text { color: #fff; }
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 991.98px) {
+    body.auth-page .auth-wrapper,
+    body.auth-page > .container,
+    body.foodsave-registration > .container {
+        padding: 2rem 1rem;
+        justify-content: flex-start;
+    }
+    body.auth-page .auth-wrapper::before,
+    body.auth-page > .container::before,
+    body.foodsave-registration > .container::before {
+        content: "\f06c  FoodSave";
+        display: block;
+        text-align: center;
+        font-family: "Font Awesome 6 Free", var(--au-serif);
+        font-weight: 600;
+        font-size: 1.2rem;
+        line-height: 1.45;
+        letter-spacing: -.01em;
+        color: var(--au-rescue-strong);
+        margin: 0 0 1.25rem;
+    }
+    body.auth-page .auth-wrapper::after,
+    body.foodsave-registration > .container::after { display: none; }
+    body.auth-page .auth-wrapper > .container::before,
+    body.auth-page > .container > .row::before,
+    body.foodsave-registration > .container > .row::before {
+        content: "“If you can't feed a hundred\A people, then feed just one.”\A MOTHER TERESA";
+        display: block;
+        flex: 0 0 100%;
+        text-align: center;
+        white-space: pre-line;
+        font-family: var(--au-sans);
+        font-size: .78rem;
+        font-weight: 500;
+        line-height: 1.45;
+        color: var(--au-cream-dim);
+        margin: -.75rem 0 1.25rem;
+    }
+    body.auth-page > .auth-container { margin-top: 2rem; }
+}
+
+@media (max-width: 575.98px) {
+    body.auth-page .auth-container,
+    body.auth-page .login-container { padding: 1.75rem 1.35rem !important; border-radius: 18px !important; }
+    body.auth-page .auth-card .card-header { padding: 1.75rem 1.35rem 0 !important; }
+    body.auth-page .auth-card .card-body { padding: 1rem 1.35rem 1.75rem !important; }
+    body.foodsave-registration .card-header { padding: 1.5rem 1.35rem 1.25rem !important; }
+    body.foodsave-registration .card-body { padding: 1.35rem !important; }
+    body.auth-page .remember-row { flex-wrap: wrap; gap: .5rem; }
+}
+
+/* Registration: normalise mixed input-group sizes */
+body.foodsave-registration .input-group-lg > .form-control,
+body.foodsave-registration .input-group-lg > .form-select,
+body.foodsave-registration .input-group-lg > .input-group-text,
+body.foodsave-registration .input-group-lg > .btn {
+    min-height: 46px; font-size: .92rem; padding-top: .6rem; padding-bottom: .6rem;
+}
+body.foodsave-registration .input-group-lg > .input-group-text,
+body.foodsave-registration .input-group > .input-group-text { font-size: .9rem; width: 46px; }
+body.foodsave-registration .input-group > .btn { border-color: rgba(243, 236, 217, .18); background: rgba(11, 14, 13, .52); color: var(--au-cream-dim); }
+
+body.foodsave-registration [onclick] { cursor: pointer; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body.auth-page button[type="submit"], body.auth-page .btn-primary,
+    body.foodsave-registration .btn-primary, body.foodsave-registration button[type="submit"] {
+        transition: none !important;
+    }
+}

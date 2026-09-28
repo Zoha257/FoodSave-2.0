@@ -1,0 +1,72 @@
+{
+  "model": "Logistic Regression",
+  "model_version": "logistic-v1",
+  "interpretation": "Positive coefficients increase predicted expiry-risk probability; negative coefficients decrease it.",
+  "features": [
+    {
+      "feature": "days_until_expiration",
+      "coefficient": -1.998324,
+      "absolute_importance": 1.998324
+    },
+    {
+      "feature": "category: fruits",
+      "coefficient": 0.765785,
+      "absolute_importance": 0.765785
+    },
+    {
+      "feature": "category: grains",
+      "coefficient": -0.548362,
+      "absolute_importance": 0.548362
+    },
+    {
+      "feature": "pickup_requested",
+      "coefficient": -0.539543,
+      "absolute_importance": 0.539543
+    },
+    {
+      "feature": "volunteer_assigned",
+      "coefficient": -0.523426,
+      "absolute_importance": 0.523426
+    },
+    {
+      "feature": "category: vegetables",
+      "coefficient": -0.449533,
+      "absolute_importance": 0.449533
+    },
+    {
+      "feature": "category: meat",
+      "coefficient": -0.381396,
+      "absolute_importance": 0.381396
+    },
+    {
+      "feature": "category: other",
+      "coefficient": 0.345618,
+      "absolute_importance": 0.345618
+    },
+    {
+      "feature": "creation_hour",
+      "coefficient": 0.191852,
+      "absolute_importance": 0.191852
+    },
+    {
+      "feature": "category: dairy",
+      "coefficient": 0.175821,
+      "absolute_importance": 0.175821
+    },
+    {
+      "feature": "creation_day_of_week",
+      "coefficient": 0.151954,
+      "absolute_importance": 0.151954
+    },
+    {
+      "feature": "quantity_value",
+      "coefficient": -0.1378,
+      "absolute_importance": 0.1378
+    },
+    {
+      "feature": "category: prepared_food",
+      "coefficient": 0.09151,
+      "absolute_importance": 0.09151
+    }
+  ]
+}
